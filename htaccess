@@ -1,0 +1,16 @@
+# Disable directory listing
+Options -Indexes
+
+# Default index files
+DirectoryIndex index.php index.html
+
+# Basic rewrite engine (safe for Hostinger)
+RewriteEngine On
+
+# Allow direct access to existing files and folders
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Pass everything else through normally
+RewriteRule ^(.*)$ $1 [L,QSA]
